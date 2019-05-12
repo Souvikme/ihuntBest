@@ -44,4 +44,8 @@ router.get('/authorg/signup',function(req,res,next){
   res.render('auth/organization/signup');
 });
 
+router.get('/authorg/setup/profile',function(req,res,next){
+  res.render('auth/organization/profileSetup');
+});
+
 module.exports = router;
