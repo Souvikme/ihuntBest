@@ -1,0 +1,86 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(rel='stylesheet', href='../stylesheets/style.css')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+    link(rel='stylesheet', href='../stylesheets/css/font-awesome.min.css')
+    link(rel='stylesheet', href='../stylesheets/swip-slider1.css')
+    title=title
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-warning.py-md-0
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            ul.nav.navbar-nav.text-nowrap.flex-row.mx-md-auto.order-1.order-md-2
+                li.nav-item.active
+                 a.nav-link(href='#')
+                    | India (IN) 
+                    span.sr-only (current)
+                li.nav-item
+                 a.nav-link(href='#')
+                    | State
+                li.nav-item
+                 a.nav-link(href='#')
+                    | District
+                li.nav-item
+                 a.nav-link(href='#')
+                    | Test Plans
+                li.nav-item
+                 a.nav-link(href='#')
+                    | Advertise Plans
+                li.nav-item
+                 a.nav-link(href='#')
+                    | Alert
+                li.nav-item
+                 a.nav-link(href='#')
+                    | Student Login/SignUp
+                li.nav-item
+                 a.nav-link(href='/authorg/login')
+                    | Organization Login
+                li.nav-item
+                 a.nav-link(href='/authorg/signup')
+                    | Organization signup
+                    
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.navbar-brand(href='#')
+            img.d-inline-block.align-top(src='/images/logo.png', alt='', width='223', height='46')
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            form.form-inline.my-2.my-lg-0
+                input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
+                button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+            ul.navbar-nav.ml-auto
+                li.nav-item
+                    button.btn.btn-lg.btn-info(type='button')
+                     i.fa.fa-cart-plus(aria-hidden='true')
+                        |  cart 
+                        span.badge.badge-light 0
+    nav.navbar.navbar-expand-lg.navbar-light.bg-success.py-md-0
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            ul.nav.navbar-nav.text-nowrap.flex-row.mx-md-auto.order-1.order-md-2
+                li.nav-item.active
+                 a.nav-link(href='#')
+                    | University 
+                    span.sr-only (current)
+                li.nav-item
+                 a.nav-link(href='#')
+                    | College
+                li.nav-item
+                 a.nav-link(href='#')
+                    | Inistitute
+                li.nav-item
+                 a.nav-link(href='#')
+                    | School
+    block content
+    
+    //footer
+
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
+    script(src='../javascripts/main.js')

@@ -1,0 +1,36 @@
+extends static/layout
+
+block content
+  include static/components/slider.pug
+  include static/components/services.pug
+  
+  .container-fluid
+    .row(style='margin-top:50px')
+        .col-12
+            h1.text-center Our Organization
+            .hr
+                hr
+  .container-fluid
+    .row
+      .col-3
+        include static/components/filter/university.pug
+      .col-9
+        include static/components/organization/university.pug
+    .row
+      .col-12
+        br
+    .row
+      .col-3
+        include static/components/filter/college.pug 
+      .col-9
+        include static/components/organization/college.pug
+    .row
+      .col-12
+        br
+    .row
+      .col-3
+        include static/components/filter/school.pug 
+      .col-9
+        include static/components/organization/school.pug
+  h1= title
+  p Welcome to #{title}

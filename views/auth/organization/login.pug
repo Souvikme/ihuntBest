@@ -1,0 +1,14 @@
+extends public/layout
+
+block content
+    .login-clean
+        form(method='post')
+            h2.sr-only Login Form
+            .illustration
+            i.icon.ion-ios-navigate
+            .form-group
+            input.form-control(type='email', name='email', placeholder='Email')
+            .form-group
+            input.form-control(type='password', name='password', placeholder='Password')
+            .form-group
+            button.btn.btn-primary.btn-block(type='submit') Log In

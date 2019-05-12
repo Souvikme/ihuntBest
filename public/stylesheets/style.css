@@ -1,0 +1,75 @@
+body {
+ 
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+div.hr {
+  height: 30px;
+  background: #fff url(/images/head.png) no-repeat scroll center;
+}
+div.hr hr {
+  display: none;
+}
+.row-service{
+  padding: 50px
+}
+
+.card {
+  /* the other rules */
+  transition: height 0.3s, box-shadow 0.3s;
+}
+.card-1{
+  height : 625px
+}
+
+.card:hover {
+ 
+  box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);
+}
+
+.card-shadow{
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.5);
+}
+.card-slider-control {
+  height: 50px;
+  width: 50px;
+  margin-top: 150px;
+  font-size: 25px;
+  color: #000;
+ 
+}
+
+.card-body{
+ 
+}
+
+.slider-section {
+  margin-top: 50px;
+}
+
+.sl-card .sl-content p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.sl-card .img-fluid {
+  margin-bottom: 20px;
+}
+
+.sl-card {
+  padding: 10px;
+  border: 2px solid #ffe2c0;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.sl-card .b-div {
+  margin-top: 10px;
+  text-align: center;
+}
+
