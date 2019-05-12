@@ -1,0 +1,54 @@
+extends public/layout
+
+block content
+  .container.text-left.text-black-50(style='padding: 50px;padding-left: 0px;padding-right: 0px;')
+    .card
+      .card-header.text-dark(style='background-color: #f5c039;')
+        h5 ENTER DETAILS ( PROFILE ) 
+        span LOGED AS : 
+      .card-body
+        .row
+          .col
+            form
+              .form-group
+                label CHOOSE TYPE
+                select.custom-select.custom-select-lg
+                  option(value='1', selected='') COLLEGE
+                  option(value='2') UNIVERSITY
+                  option(value='3') SCHOOL
+                  option(value='4') INSTITUTE
+                  option(value='0', selected='') -- CHOOSE --
+              .form-group
+                label NAME
+                input.form-control.form-control-lg(type='text', required='', name='name', placeholder='Short name')
+              .form-group
+                label FULL NAME
+                input.form-control.form-control-lg(type='text', name='full_name', placeholder='Full name', required='')
+              .form-group
+                label EMAIL
+                input.form-control.form-control-lg(type='email', name='email', placeholder='email@', inputmode='email', required='')
+              .form-group
+                label PHONE NO
+                input.form-control.form-control-lg(type='tel', name='phone', placeholder='Phone no', inputmode='tel', required='')
+              .form-group
+                label COUNTRY
+                input.form-control.form-control-lg(type='text', name='country', required='')
+              .form-group
+                label STATE
+                input.form-control.form-control-lg(type='text', name='state', required='')
+              .form-group
+                label PLACE
+                input.form-control.form-control-lg(type='text', name='place', required='')
+              .form-group
+                label ADDRESS
+                textarea.form-control.form-control-lg(name='address', placeholder='Address', spellcheck='true', required='', wrap='soft')
+              .form-group
+                label ESTABLISHMENT DATE
+                input.form-control.form-control-lg(type='text', name='estd', placeholder='ESTD')
+              .form-group
+                label ABOUT 
+                textarea.form-control.form-control-lg(name='about', placeholder='About', required='')
+              .form-group
+                button.btn.btn-warning.btn-block.btn-lg.text-center.text-dark(type='submit')
+                  i.fa.fa-paper-plane
+                  |  GO NEXT
