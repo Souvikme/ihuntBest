@@ -36,16 +36,4 @@ router.get('/', function(req, res, next) {
    console.log(data);
 });
 
-router.get('/authorg/login',function(req,res,next){
-    res.render('auth/organization/login');
-});
-
-router.get('/authorg/signup',function(req,res,next){
-  res.render('auth/organization/signup');
-});
-
-router.get('/authorg/setup/profile',function(req,res,next){
-  res.render('auth/organization/profileSetup');
-});
-
 module.exports = router;
