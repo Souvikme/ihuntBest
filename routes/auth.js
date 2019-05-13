@@ -39,6 +39,7 @@ router.post('/authorg/signup',function(req,res,next){
           PASSWORD:passwod,
           PROCESS:"incomplete",
           TIMESTAMP: Date.now()
+
       });
       if(req.session.email){
         res.redirect('/auth/authorg/setup/profile');
@@ -46,7 +47,12 @@ router.post('/authorg/signup',function(req,res,next){
         res.redirect('auth/authorg/signup');
       }
       console.log(email+" "+passwod);
-      next();
+});
+router.post('/authorg/signup',function(req,res,next){
+
+
+
+
 });
 
 
