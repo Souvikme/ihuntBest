@@ -3,13 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/auth');
-
 var firebase = require('firebase');
-
 var app = express();
+var session = require('express-session');
 
 var firebaseConfig = {
   apiKey: "AIzaSyCw8-hNGsxX85nYx_tL2gHvJ0vW-yIdhto",
@@ -23,9 +22,18 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+app.use(cookieParser());
+app.use(session({secret: "Shh, its a secret!"}));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// for parsing application/json
+app.use(bodyParser.json()); 
+
+// for parsing application/xwww-
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.use(logger('dev'));
 app.use(express.json());
