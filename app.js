@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/auth');
 var firebase = require('firebase');
+var md5 = require('md5');
 var app = express();
 var session = require('express-session');
 
@@ -21,6 +22,8 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+app.use(md5);
 
 app.use(cookieParser());
 app.use(session({secret: "Shh, its a secret!"}));

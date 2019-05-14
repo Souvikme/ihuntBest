@@ -38,8 +38,8 @@ router.post('/authorg/signup',function(req,res,next){
           EMAIL:email,
           PASSWORD:passwod,
           PROCESS:"incomplete",
-          TIMESTAMP: Date.now()
-
+          TIMESTAMP: Date.now(),
+          UUID : md5(email)
       });
       if(req.session.email){
         res.redirect('/auth/authorg/setup/profile');
