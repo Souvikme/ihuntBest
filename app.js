@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/auth');
 var firebase = require('firebase');
+var flash = require('connect-flash');
 var app = express();
 var session = require('express-session');
 
@@ -27,6 +28,17 @@ firebase.initializeApp(firebaseConfig);
 app.use(cookieParser());
 app.use(session({secret: "Shh, its a secret!"}));
 
+//flash
+
+app.use(flash(app));
+app.use(function(req, res, next){
+  res.locals.success = req.flash('success');
+  res.locals.errors = req.flash('error');
+  res.locals.message = req.flash('msg');
+  next();
+});
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -45,6 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
