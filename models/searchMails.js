@@ -1,23 +1,33 @@
 var firebase = require('firebase');
 
-module.exports = function(){
-    this.mailCheck = function(email )
+var searchMails = {
+    match: function(email )
     {
-        var dbref = firebase.database().ref('organizationRegTemp');
-        var query = dbref.orderByChild('email')
-                    .equalTo(email)
-                    .limitToFirst(1);
-        query.on("value", function(snapshot) {
-            data2 = snapshot.val();
+        var query;
+        var dbref = firebase.database().ref("organizationRegTemp");
+      
 
-            return data2
-
-            }, function (error) {
-            return error;
-        });  
-        return email;               
+        //  dbref.orderByChild("EMAIL").equalTo(email).once("value", function(data) {
+        //     data.forEach(function (childSnapshot) {
+        //         //var data = childSnapshot.val();
+        //          query=childSnapshot.exists();
+        //          //console.log(query);
+        //          return query;     
+        //     });
+        //  });
+          
+                  
     }
 }
+
+// function getArticlePromise(id) {
+//     return ref.child('blogposts').child(id).once('value').then(function(snapshot) {
+//       return snapshot.val();
+//     });
+//   }
+
+
+module.exports = searchMails
 
 
 

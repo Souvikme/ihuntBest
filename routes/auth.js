@@ -3,7 +3,7 @@ var router = express.Router();
 var firebase = require('firebase');
 var bcrypt = require('bcryptjs');
 var shortid = require('shortid');
-require('../models/searchMails.js')();
+var modules = require('../models/searchMails.js');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource',{
@@ -37,33 +37,40 @@ router.post('/authorg/signup',function(req,res,next){
       var uuid = shortid.generate();
       req.session.email = req.body.email;
       req.session.uuid = uuid;
-      var data = mailCheck(email);
-      if(email === data){
-        req.flash('success','true');
-        req.flash('msg',email+' IT IS ALREADY PRESENT');
-        res.redirect('/auth/authorg/signup');
-      }else{
-
-      bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(req.body.password, salt, function(err, hash) {
-          var dbref = firebase.database().ref("organizationRegTemp");
-          dbref.push({
-              EMAIL:email,
-              PASSWORD:hash,
-              PROCESS:"incomplete",
-              TIMESTAMP: Date.now(),
-              UUID : uuid 
-          });
-        });
+      var dbref = firebase.database().ref("organizationRegTemp");
+      var data;
+        dbref.orderByChild("EMAIL").equalTo(email).once("value").then(function(snapshot) {
+            console.log(snapshot.exists());
+            data = snapshot.exists();
+            if(data === true){
+              req.flash('success','true');
+              req.flash('msg',email+' IT IS ALREADY PRESENT');
+              res.redirect('/auth/authorg/signup');
+            }else{
+      
+            bcrypt.genSalt(10, function(err, salt) {
+              bcrypt.hash(req.body.password, salt, function(err, hash) {
+               
+                dbref.push({
+                    EMAIL:email,
+                    PASSWORD:hash,
+                    PROCESS:"incomplete",
+                    TIMESTAMP: Date.now(),
+                    UUID : uuid 
+                });
+              });
+            });
+        
+            if(req.session.email){
+              res.redirect('/auth/authorg/setup/profile');
+            }else {
+              res.redirect('auth/authorg/signup');
+            }
+            console.log(email+" "+passwod);
+          }
       });
-  
-      if(req.session.email){
-        res.redirect('/auth/authorg/setup/profile');
-      }else {
-        res.redirect('auth/authorg/signup');
-      }
-      console.log(email+" "+passwod);
-    }
+    console.log(data);
+      
 });
 router.post('/authorg/signup',function(req,res,next){
 
