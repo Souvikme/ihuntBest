@@ -26,7 +26,8 @@ router.get('/authorg/setup/profile',function(req,res,next){
   if(req.session.email){
     res.render('auth/organization/profileSetup',{
         title : "Organization profile setup",
-        user: req.session.email+" "+req.session.uuid
+        user: req.session.email+" "+req.session.uuid,
+        value: req.session.email
       });
   }else{
     res.redirect('../../authorg/signup');
@@ -50,7 +51,6 @@ router.post('/authorg/signup',function(req,res,next){
       
             bcrypt.genSalt(10, function(err, salt) {
               bcrypt.hash(req.body.password, salt, function(err, hash) {
-               
                 dbref.push({
                     EMAIL:email,
                     PASSWORD:hash,
@@ -73,7 +73,21 @@ router.post('/authorg/signup',function(req,res,next){
       
 });
 router.post('/authorg/signup',function(req,res,next){
+    var uuid = req.session.uuid;
+    var fullname = req.body.full_name;
+    var name = req.body.name;
+    var about = req.body.about;
+    var address = req.body.address;
+    var estd = req.body.estd;
+    var phone = req.body.phone;
+    var country = req.body.country;
+    var email = req.body.email;
+    var place = req.body.place;
+    var state = req.body.state;
+    var choose = req.body.choose;
 
+    // var dbref = firebase.database().ref("university").child(uuid);
+    // dbref.push({});
 
 });
 
