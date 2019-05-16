@@ -87,6 +87,32 @@ router.post('/authorg/setup/profile',function(req,res,next){
     var choose = req.body.choose;
     var regno = req.body.regno;
 
+    //IHUNT REG NO 
+    var temp1 = name.replace(/\s/g, "");
+    var temp3="";
+    switch(choose){
+        case "university" :
+                            temp3 = "UV";
+                          break;
+        case "school"     :
+                            temp3 = "SC";
+                          break;
+        case "college"    :
+                            temp3 = "CG";
+                          break;
+        case "institute"  :
+                            temp3 = "INS";
+                          break;
+    }
+    var temp2 = temp1+Date()+regno+temp3;
+    
+        
+    var dbref3 = firebase.database().ref(choose).child(uuid);
+    dbref3.set({
+        STAT : "incomplete",
+        UV_ID : temp2
+    });
+
     var dbref = firebase.database().ref(choose).child(uuid).child("PROFILE");
     dbref.set({
 
@@ -107,29 +133,7 @@ router.post('/authorg/setup/profile',function(req,res,next){
                   STATE : state
     });
 
-    //IHUNT REG NO 
-    var temp1 = name.replace(/\s/g, "");
-    var temp3="";
-    switch(choose){
-        case "university" :
-                            temp3 = "UV";
-                          break;
-        case "school"     :
-                            temp3 = "SC";
-                          break;
-        case "college"    :
-                            temp3 = "CG";
-                          break;
-        case "institute"  :
-                            temp3 = "INS";
-                          break;
-    }
-    var temp2 = temp1+Date()+regno+temp3;
-    var dbref3 = firebase.database().ref(choose).child(uuid);
-    dbref3.set({
-        STAT : "incomplete",
-        UV_ID : temp2
-    });
+
 
     res.redirect("../../../");
 });
