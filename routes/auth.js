@@ -72,7 +72,7 @@ router.post('/authorg/signup',function(req,res,next){
     console.log(data);
       
 });
-router.post('/authorg/signup',function(req,res,next){
+router.post('/authorg/setup/profile',function(req,res,next){
     var uuid = req.session.uuid;
     var fullname = req.body.full_name;
     var name = req.body.name;
@@ -86,9 +86,26 @@ router.post('/authorg/signup',function(req,res,next){
     var state = req.body.state;
     var choose = req.body.choose;
 
-    // var dbref = firebase.database().ref("university").child(uuid);
-    // dbref.push({});
+    var dbref = firebase.database().ref(choose).child(uuid).child("PROFILE");
+    dbref.set({
 
+                  ABOUT : about,
+                  EMAIL : email,
+                  ESTD : estd,
+                  FULL_NAME : fullname,
+                  NAME :  name,
+                  ADDRESS : address,
+                  PHONE : phone
+
+    });
+
+    var dbref2 = firebase.database().ref(choose).child(uuid).child("LOCATION");
+    dbref2.set({
+                  COUNTRY : country,
+                  PLACE : place,
+                  STATE : state
+    });
+    res.redirect("../../../");
 });
 
 
