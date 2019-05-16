@@ -20,7 +20,7 @@ block content
                   option(value='0', selected='') -- CHOOSE --
               .form-group
                 label NAME
-                input.form-control.form-control-lg(type='text', required='', name='name', placeholder='Short name')
+                input.form-control.form-control-lg(type='text', required='', name='name', placeholder='Short name',style="text-transform:uppercase")
               .form-group
                 label FULL NAME
                 input.form-control.form-control-lg(type='text', name='full_name', placeholder='Full name', required='')
@@ -30,6 +30,9 @@ block content
               .form-group
                 label PHONE NO
                 input.form-control.form-control-lg(type='tel', name='phone', placeholder='Phone no', inputmode='tel', required='')
+              .form-group
+                label REGISTRATION NO 
+                input.form-control.form-control-lg(type='tel', name='regno', placeholder='Reg. No.', inputmode='text', required='')
               .form-group
                 label COUNTRY
                 input.form-control.form-control-lg(type='text', name='country', required='')

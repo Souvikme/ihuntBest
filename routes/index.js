@@ -8,32 +8,31 @@ router.get('/', function(req, res, next) {
     var dbref = firebase.database().ref("university");
     var dbref2 = firebase.database().ref("college");
     var dbref3 = firebase.database().ref("school");
-    dbref3.on("value", function(snapshot) {
-      data3 = snapshot.val();
-
-    }, function (error) {
-      console.log("Error: " + error.code);
-    });
-    dbref.on("value", function(snapshot) {
+ 
+    dbref.orderByChild("STAT").equalTo("done").once("value").then(function(snapshot) {
       data = snapshot.val();
-
+      dbref3.orderByChild("STAT").equalTo("done").once("value").then(function(snapshot) {
+        data3 = snapshot.val();
+        dbref2.orderByChild("STAT").equalTo("done").once("value").then(function(snapshot) {
+          data2 = snapshot.val();
+          res.render('public/index', { 
+            serviceh1: 'TEST IT',
+            title : 'ihuntbest',
+            university : data,
+            college : data2,
+            school : data3
+            });
+           console.log(data);
+         }, function (error) {
+           console.log("Error: " + error.code);
+         });
+  
+      }, function (error) {
+        console.log("Error: " + error.code);
+      });
     }, function (error) {
       console.log("Error: " + error.code);
     });
-   dbref2.on("value", function(snapshot) {
-     data2 = snapshot.val();
-
-    }, function (error) {
-      console.log("Error: " + error.code);
-    });
-   res.render('public/index', { 
-    serviceh1: 'TEST IT',
-    title : 'ihuntbest',
-    university : data,
-    college : data2,
-    school : data3
-    });
-   console.log(data);
 });
 
 module.exports = router;
