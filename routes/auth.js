@@ -33,6 +33,17 @@ router.get('/authorg/setup/profile',function(req,res,next){
     res.redirect('../../authorg/signup');
   }
 });
+
+router.get('/authorg/dashboard',function(req,res,next){
+  // if(req.session.email){
+    res.render('auth/organization/crm/dashboard',{
+        title : "Organization profile setup"
+      });
+  // }else{
+  //   res.redirect('../../authorg/signup');
+  // }
+});
+
 router.post('/authorg/signup',function(req,res,next){
       var email = req.body.email;
       var uuid = shortid.generate();
