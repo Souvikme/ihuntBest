@@ -140,15 +140,17 @@ router.post('/authorg/setup/profile',function(req,res,next){
 
 router.post('/authorg/login',function(req,res,next){
       var email = req.body.email;
-      var passwod = req.body.password;
+      var password = req.body.password;
       var dbref = firebase.database().ref("organizationRegTemp");
 
       bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(passwod, salt, function(err, hash) {
+        bcrypt.hash(password, salt, function(err, hash) {
           dbref.orderByChild("EMAIL").equalTo(email).once("value").then(function(snap){
               if(snap.exists() === true){
-                dbref.orderByChild("PASSWORD").equalTo(passwod).once("value").then(function(snap){
+                console.log(snap.exists());
+                dbref.orderByChild("PASSWORD").equalTo(password).once("value").then(function(snap){
                     if(snap.exists() === true){
+                      console.log(snap.exists());
                       var getemail = snap.val().EMAIL;
                       var getuuid = snap.val().UUID;
                       req.session.email = getemail;
@@ -156,14 +158,14 @@ router.post('/authorg/login',function(req,res,next){
                       res.redirect("/dasboard");
                     }else{
                       req.flash('error','true');
-                      req.flash('msg',email+'or password error');
-                      res.redirect("/authorg/login");
+                      req.flash('msg',' email / password error');
+                      res.redirect("/auth/authorg/login");
                     }
                 });
               }else{
                 req.flash('error','true');
-                req.flash('msg',email+'or password error');
-                res.redirect("/authorg/login");
+                req.flash('msg',email+' not registered');
+                res.redirect("/auth/authorg/login");
               }
           });
         });

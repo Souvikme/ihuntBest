@@ -1,10 +1,10 @@
 extends public/layout
 
 block content
-    .login-clean
-        if error === true
-            .alert.alert-danger(role='alert')=message     
+    .login-clean   
         form(method='post')
+            if locals.errors == 'true'
+                .alert.alert-danger(role='alert')=message  
             h2.sr-only Login Form
             .illustration
             i.icon.ion-ios-navigate
