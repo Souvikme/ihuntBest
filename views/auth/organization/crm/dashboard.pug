@@ -9,4 +9,12 @@ block content
             span.text Split Button Success
         // Content Row
     include tools/progresscards.pug
-    include tools/orgdata.pug
+    .row
+        .col-lg-2
+            include tools/orgdata/affiliation.pug
+        .col-lg-6
+            include tools/orgdata/cources.pug
+        .col-lg-2
+            include tools/orgdata/seat.pug
+        .col-lg-2
+            include tools/orgdata/fee.pug

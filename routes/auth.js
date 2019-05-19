@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
     title : "Login"
   });
 });
+
 router.get('/authorg/login',function(req,res,next){
   res.render('auth/organization/login',{
     title : "Login"
@@ -32,16 +33,6 @@ router.get('/authorg/setup/profile',function(req,res,next){
   }else{
     res.redirect('../../authorg/signup');
   }
-});
-
-router.get('/authorg/dashboard',function(req,res,next){
-  // if(req.session.email){
-    res.render('auth/organization/crm/dashboard',{
-        title : "Organization profile setup"
-      });
-  // }else{
-  //   res.redirect('../../authorg/signup');
-  // }
 });
 
 router.post('/authorg/signup',function(req,res,next){
@@ -75,14 +66,14 @@ router.post('/authorg/signup',function(req,res,next){
             if(req.session.email){
               res.redirect('/auth/authorg/setup/profile');
             }else {
-              res.redirect('auth/authorg/signup');
+              res.redirect('/auth/authorg/signup');
             }
             console.log(email+" "+passwod);
           }
       });
-    console.log(data);
-      
+    console.log(data);      
 });
+
 router.post('/authorg/setup/profile',function(req,res,next){
     var uuid = req.session.uuid;
     var fullname = req.body.full_name;
@@ -116,7 +107,7 @@ router.post('/authorg/setup/profile',function(req,res,next){
                           break;
     }
     var temp2 = temp1+Date()+regno+temp3;
-    
+    req.session.choose = req.body.choose;
         
     var dbref3 = firebase.database().ref(choose).child(uuid);
     dbref3.set({
@@ -144,10 +135,41 @@ router.post('/authorg/setup/profile',function(req,res,next){
                   STATE : state
     });
 
-
-
-    res.redirect("../../../");
+    res.redirect("/dashboard");
 });
 
+router.post('/authorg/login',function(req,res,next){
+      var email = req.body.email;
+      var passwod = req.body.password;
+      var dbref = firebase.database().ref("organizationRegTemp");
+
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(passwod, salt, function(err, hash) {
+          dbref.orderByChild("EMAIL").equalTo(email).once("value").then(function(snap){
+              if(snap.exists() === true){
+                dbref.orderByChild("PASSWORD").equalTo(passwod).once("value").then(function(snap){
+                    if(snap.exists() === true){
+                      var getemail = snap.val().EMAIL;
+                      var getuuid = snap.val().UUID;
+                      req.session.email = getemail;
+                      req.session.uuid = getuuid; 
+                      res.redirect("/dasboard");
+                    }else{
+                      req.flash('error','true');
+                      req.flash('msg',email+'or password error');
+                      res.redirect("/authorg/login");
+                    }
+                });
+              }else{
+                req.flash('error','true');
+                req.flash('msg',email+'or password error');
+                res.redirect("/authorg/login");
+              }
+          });
+        });
+      });
+
+
+});
 
 module.exports = router;

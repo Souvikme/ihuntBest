@@ -2,6 +2,8 @@ extends public/layout
 
 block content
     .login-clean
+        if error === true
+            .alert.alert-danger(role='alert')=message     
         form(method='post')
             h2.sr-only Login Form
             .illustration

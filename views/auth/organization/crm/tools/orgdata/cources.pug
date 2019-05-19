@@ -1,0 +1,81 @@
+.card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+        h6.m-0.font-weight-bold.text-primary Cources
+        .dropdown.no-arrow
+        a#dropdownMenuLink.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            i.fas.fa-ellipsis-v.fa-sm.fa-fw.text-gray-400
+        .dropdown-menu.dropdown-menu-right.shadow.animated--fade-in(aria-labelledby='dropdownMenuLink')
+            .dropdown-header Choose your Actions:
+            button.dropdown-item(type='button', data-toggle='modal', data-target='#addcourse')  Add
+            button.dropdown-item(type='button', data-toggle='modal', data-target='#delcourse')  Delete
+            .dropdown-divider
+            button.dropdown-item(type='button', data-toggle='modal', data-target='#editcourse') Update
+                // Card Body
+    .card-body
+        div(data-spy='scroll', data-target='', data-offset='0')
+          .list-group
+            if pre1 === false
+              a.list-group-item.list-group-item-action(href='#')=courses2
+            else
+              for data1 in courses
+                a.list-group-item.list-group-item-action(href='#')=data1.NAME
+
+#addcourse.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title Add courses
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+      .modal-body
+        .container
+          .row
+            .col
+              form(method='post')
+                .form-group
+                  label Course Name
+                  input.form-control(type='text',name='name')
+                .form-group
+                  label Seat Available
+                  input.form-control(type='text',name='seat')
+                .form-group
+                  .form-row
+                    .col
+                      label Fee
+                      input.form-control(type='text',name='fee')
+                    .col
+                      label Period
+                      input.form-control(type='text',name='period')
+                .form-group
+                  label Couse Details
+                  textarea.form-control(type='text',name='detail')
+                .form-group.text-right
+                  button.btn.btn-success.btn-lg(type='submit') ADD
+      .modal-footer
+        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+
+#delcourse.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title Modal title
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+      .modal-body
+        | ...
+      .modal-footer
+        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+        button.btn.btn-primary(type='button') Save changes
+
+#editcourse.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title Modal title
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+      .modal-body
+        | ...
+      .modal-footer
+        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+        button.btn.btn-primary(type='button') Save changes

@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/auth');
+var authRouter = require('./routes/auth');
+var dashRouter = require('./routes/dashboard');
 var firebase = require('firebase');
 var flash = require('connect-flash');
 var app = express();
@@ -56,7 +57,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/auth', usersRouter);
+app.use('/auth', authRouter);
+app.use('/dashboard', dashRouter);
 
 
 // catch 404 and forward to error handler
